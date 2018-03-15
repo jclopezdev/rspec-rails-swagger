@@ -14,7 +14,21 @@ RSpec.configure do |config|
         version: 'v1'
       },
       definitions: {
-
+        createContact: {
+          type: :object,
+          properties: {
+            data: {
+              type: :object,
+              required: %i[name phone email address],
+              properties: {
+                name: { type: :string, example: 'magmaLabs.io' },
+                phone: { type: :string, example: '+52 1 667 317 9035' },
+                email: { type: :string, example: 'hello@magmalabs.io' },
+                address: { type: :string, example: 'Av. Constitución #2035. Colima, Colima, MX, 28017' }
+              }
+            }
+          }
+        }
       }
     }
   }
