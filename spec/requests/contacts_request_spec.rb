@@ -46,5 +46,32 @@ RSpec.describe 'Contacts', type: :request, capture_examples: true do
         end
       end
     end
+
+    path '/contacts/{id}' do
+      get(summary: 'Get Contact') do
+        consumes 'application/json'
+        produces 'application/json'
+        tags :contacts
+
+        parameter :id, in: :path, type: :integer, required: true, description: 'Contact ID'
+
+        let(:contact_1) do
+          create(:contact)
+        end
+
+        let(:contact_2) do
+          create(:contact)
+        end
+
+        response(200, description: 'Return the selected contact') do
+          let(:id) { contact_1.id }
+        end
+
+        response(404, description: 'Contact not found') do
+          let(:id) { 999 }
+        end
+      end
+    end
+
   end
 end
