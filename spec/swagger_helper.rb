@@ -14,7 +14,7 @@ RSpec.configure do |config|
         version: 'v1'
       },
       definitions: {
-        createContact: {
+        contact: {
           type: :object,
           properties: {
             data: {
