@@ -1,0 +1,219 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "definitions": {
+    "contact": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "required": [
+            "name",
+            "phone",
+            "email",
+            "address"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "magmaLabs.io"
+            },
+            "phone": {
+              "type": "string",
+              "example": "+52 1 667 317 9035"
+            },
+            "email": {
+              "type": "string",
+              "example": "hello@magmalabs.io"
+            },
+            "address": {
+              "type": "string",
+              "example": "Av. Constitución #2035. Colima, Colima, MX, 28017"
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/contacts": {
+      "get": {
+        "responses": {
+          "200": {
+            "examples": {
+              "application/json": [
+                {
+                  "id": 1,
+                  "name": "John Doe 4",
+                  "phone": "3420808061",
+                  "email": "john-doe4@test.magmalabs.io",
+                  "address": "Fake Address 4",
+                  "created_at": "2018-03-20T15:52:37.056Z",
+                  "updated_at": "2018-03-20T15:52:37.056Z"
+                },
+                {
+                  "id": 2,
+                  "name": "John Doe 5",
+                  "phone": "7880954267",
+                  "email": "john-doe5@test.magmalabs.io",
+                  "address": "Fake Address 5",
+                  "created_at": "2018-03-20T15:52:37.058Z",
+                  "updated_at": "2018-03-20T15:52:37.058Z"
+                },
+                {
+                  "id": 3,
+                  "name": "John Doe 6",
+                  "phone": "8250605949",
+                  "email": "john-doe6@test.magmalabs.io",
+                  "address": "Fake Address 6",
+                  "created_at": "2018-03-20T15:52:37.059Z",
+                  "updated_at": "2018-03-20T15:52:37.059Z"
+                }
+              ]
+            },
+            "description": "Return all the available contacts"
+          }
+        },
+        "tags": [
+          "contacts"
+        ],
+        "summary": "Get contacts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      },
+      "post": {
+        "responses": {
+          "201": {
+            "examples": {
+              "application/json": {
+                "id": 1,
+                "name": "Magmalabs.io",
+                "phone": "+52 1 667 317 9035",
+                "email": "hello@magmalabs.io",
+                "address": "Av. Constitución #2035. Colima, Colima, MX, 28017",
+                "created_at": "2018-03-20T15:52:37.067Z",
+                "updated_at": "2018-03-20T15:52:37.067Z"
+              }
+            },
+            "description": "Contact created"
+          }
+        },
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createContact"
+            }
+          }
+        ],
+        "tags": [
+          "contacts"
+        ],
+        "summary": "Create a new contact",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/contacts/{id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "examples": {
+              "application/json": {
+                "id": 1,
+                "name": "John Doe 7",
+                "phone": "6323276028",
+                "email": "john-doe7@test.magmalabs.io",
+                "address": "Fake Address 7",
+                "created_at": "2018-03-20T15:52:37.074Z",
+                "updated_at": "2018-03-20T15:52:37.074Z"
+              }
+            },
+            "description": "Return the selected contact"
+          },
+          "404": {
+            "examples": {
+              "text/plain": " "
+            },
+            "description": "Contact not found"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true,
+            "description": "Contact ID"
+          }
+        ],
+        "tags": [
+          "contacts"
+        ],
+        "summary": "Get Contact",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      },
+      "put": {
+        "responses": {
+          "200": {
+            "examples": {
+              "text/plain": " "
+            },
+            "description": "Contact updated"
+          },
+          "404": {
+            "examples": {
+              "text/plain": " "
+            },
+            "description": "Contact not found"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true,
+            "description": "Contact ID"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          }
+        ],
+        "tags": [
+          "contacts"
+        ],
+        "summary": "Update Contact",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  }
+}
